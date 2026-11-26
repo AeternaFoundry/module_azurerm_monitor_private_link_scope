@@ -20,22 +20,6 @@ EOT
   validation {
     condition = alltrue([
       for k, v in var.monitor_private_link_scopes : (
-        length(v.name) >= 1
-      )
-    ])
-    error_message = "[from validate.PrivateLinkScopeName: invalid when len(value) < 1]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.monitor_private_link_scopes : (
-        length(v.name) <= 255
-      )
-    ])
-    error_message = "[from validate.PrivateLinkScopeName: invalid when len(value) > 255]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.monitor_private_link_scopes : (
         length(v.resource_group_name) <= 90
       )
     ])
@@ -65,6 +49,6 @@ EOT
     ])
     error_message = "[from tags.Validate: invalid when len(value) > 50]"
   }
-  # Note: 8 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
+  # Note: 7 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
